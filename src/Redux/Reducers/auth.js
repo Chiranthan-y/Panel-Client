@@ -2,6 +2,9 @@ import {
   LOGIN_FAIL,
   LOGIN_SUCCESS,
   LOGIN_REQUEST,
+  LOGOUT_FAIL,
+  LOGOUT_SUCCESS,
+  LOGOUT_REQUEST,
 } from './../Actions/action.types';
 
 const initialState = {
@@ -40,6 +43,36 @@ const Auth = (state = initialState, action) => {
         ...state,
         isLoading: false,
         isAuthenticated: false,
+        token: '',
+        user: null,
+        error: action.payload,
+      };
+    }
+    case LOGOUT_REQUEST: {
+      return {
+        ...state,
+        isLoading: true,
+        isAuthenticated: false,
+        token: '',
+        user: null,
+        error: null,
+      };
+    }
+    case LOGOUT_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false,
+        isAuthenticated: false,
+        token: '',
+        user: null,
+        error: null,
+      };
+    }
+    case LOGOUT_FAIL: {
+      return {
+        ...state,
+        isLoading: false,
+        isAuthenticated: true,
         token: '',
         user: null,
         error: action.payload,

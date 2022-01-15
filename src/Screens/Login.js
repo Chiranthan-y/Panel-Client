@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import Base from '../Components/Base';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { login } from './../Redux/Actions/auth';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 const Login = () => {
-  const [email, setEmail] = useState('');
+  const [username, setusername] = useState('');
   const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleLogin = () => {
-    dispatch(login({ email, password }));
+    dispatch(login({ username, password }));
+    history.replace('/dashboard');
   };
 
   return (
@@ -17,13 +20,13 @@ const Login = () => {
       <div className='bg-cyan-200 shadow-md rounded-xl px-8 pt-6 pb-8 m-10  flex flex-col'>
         <div className='mb-4'>
           <label className='block text-grey-darker text-sm font-bold mb-2'>
-            Email
+            username
           </label>
           <input
             className='shadow appearance-none border rounded-xl w-full py-2 px-3 text-grey-darker'
-            type='email'
-            placeholder='Email'
-            onChange={(e) => setEmail(e.target.value)}
+            type='username  '
+            placeholder='username '
+            onChange={(e) => setusername(e.target.value)}
           />
         </div>
         <div className='mb-6'>
