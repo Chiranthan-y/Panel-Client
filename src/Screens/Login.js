@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
 import Base from '../Components/Base';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { login } from './../Redux/Actions/auth';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 const Login = () => {
   const [username, setusername] = useState('');
   const [password, setPassword] = useState('');
 
-  const dispatch = useDispatch();
   const history = useHistory();
+  const dispatch = useDispatch();
+
+  const auth = useSelector((state) => state.auth);
 
   const handleLogin = () => {
     dispatch(login({ username, password }));
-    history.replace('/dashboard');
+    if (auth.isAuthenticated) {
+      history.push('/');
+    }
   };
 
   return (
@@ -32,7 +36,7 @@ const Login = () => {
         <div className='mb-6'>
           <label
             className='block text-grey-darker text-sm font-bold mb-2'
-            for='password'>
+            htmlFor='password'>
             Password
           </label>
           <input
@@ -50,9 +54,6 @@ const Login = () => {
             onClick={handleLogin}>
             Login
           </button>
-          <a className='inline-block align-baseline font-bold text-sm text-blue hover:text-blue-darker'>
-            Forgot Password?
-          </a>
         </div>
       </div>
     </Base>

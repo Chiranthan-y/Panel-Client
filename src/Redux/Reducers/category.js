@@ -2,6 +2,9 @@ import {
   GET_CATEGORY_FAIL,
   GET_CATEGORY_REQUEST,
   GET_CATEGORY_SUCCESS,
+  CREATE_CATEGORY_FAIL,
+  CREATE_CATEGORY_REQUEST,
+  CREATE_CATEGORY_SUCCESS,
 } from './../Actions/action.types';
 
 const initialState = {
@@ -29,6 +32,24 @@ const category = (state = initialState, action) => {
         error: action.payload,
         loading: false,
       };
+    case CREATE_CATEGORY_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case CREATE_CATEGORY_SUCCESS:
+      return {
+        ...state,
+        category: [...state.category, action.payload],
+        loading: false,
+      };
+    case CREATE_CATEGORY_FAIL:
+      return {
+        ...state,
+        error: action.payload,
+        loading: false,
+      };
+
     default:
       return state;
   }

@@ -1,13 +1,37 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import axios from '../Utils/axios';
+import { addItemToCart, removeProduct } from '../Utils/cart';
 
-const ProductCard = ({ data }) => {
+const ProductCard = ({ data, cart = false }) => {
+  const cartButton = () => (
+    <>
+      {cart ? (
+        <button
+          onClick={() => {
+            removeProduct(data._id);
+          }}
+          className='bg-red-500 hover:bg-blue-dark text-white font-bold py-2 px-4 rounded'>
+          Remove from cart
+        </button>
+      ) : (
+        <button
+          onClick={() => {
+            addItemToCart(data);
+          }}
+          className='bg-red-500 hover:bg-blue-dark text-white font-bold py-2 px-4 rounded'>
+          Add to Cart
+        </button>
+      )}
+    </>
+  );
+
   return (
     <div className='max-w-sm bg-sky-200 rounded-lg border border-gray-200 shadow-m'>
       <a href='#'>
         <img
           className='rounded-t-lg'
-          src={`${axios.defaults.baseURL}/medicine/${data.id}/photo`}
+          src={`${axios.defaults.baseURL}/medicine/${data._id}/photo`}
           alt='image'
         />
       </a>
@@ -29,9 +53,7 @@ const ProductCard = ({ data }) => {
         </a>
         <p className='mb-1 font-normal text-gray-600'>{data.description}</p>
         <div className='flex flex-wrap justify-start mt-5'>
-          <button className='bg-red-500 hover:bg-blue-dark text-white font-bold py-2 px-4 rounded'>
-            Add to Cart
-          </button>
+          <Link to='/cart'>{cartButton()}</Link>
         </div>
       </div>
     </div>

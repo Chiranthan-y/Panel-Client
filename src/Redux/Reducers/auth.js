@@ -9,7 +9,7 @@ import {
 
 const initialState = {
   isLoading: false,
-  isAuthenticated: localStorage.getItem('token') ? true : false,
+  isAuthenticated: Boolean(localStorage.getItem('token')),
   token: localStorage.getItem('token') || '',
   user: localStorage.getItem('userinfo')
     ? JSON.parse(localStorage.getItem('userinfo'))
@@ -28,6 +28,7 @@ const Auth = (state = initialState, action) => {
         error: null,
       };
     }
+
     case LOGIN_SUCCESS: {
       return {
         ...state,
@@ -38,6 +39,7 @@ const Auth = (state = initialState, action) => {
         error: null,
       };
     }
+
     case LOGIN_FAIL: {
       return {
         ...state,
@@ -48,6 +50,7 @@ const Auth = (state = initialState, action) => {
         error: action.payload,
       };
     }
+
     case LOGOUT_REQUEST: {
       return {
         ...state,
@@ -58,6 +61,7 @@ const Auth = (state = initialState, action) => {
         error: null,
       };
     }
+
     case LOGOUT_SUCCESS: {
       return {
         ...state,
@@ -68,6 +72,7 @@ const Auth = (state = initialState, action) => {
         error: null,
       };
     }
+
     case LOGOUT_FAIL: {
       return {
         ...state,
@@ -78,6 +83,7 @@ const Auth = (state = initialState, action) => {
         error: action.payload,
       };
     }
+
     default: {
       return state;
     }

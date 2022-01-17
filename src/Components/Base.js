@@ -5,12 +5,8 @@ import CategoryBar from './CategoryBar';
 
 import { useLocation } from 'react-router-dom';
 
-import { useSelector, useDispatch } from 'react-redux';
-
 const Base = ({ title, children }) => {
-  const auth = useSelector((state) => state.auth);
-
-  const flage = useLocation().pathname === '/' ? true : false;
+  const flage = useLocation().pathname === '/';
 
   return (
     <div className='flex flex-col min-h-screen'>
@@ -28,8 +24,7 @@ const Base = ({ title, children }) => {
       <main className='flex-grow'>{children}</main>
       <footer className='flex items-center justify-center bg-gray-800 p-6'>
         <span className='text-sm text-white'>
-          © {new Date().getFullYear()}, Developed
-          {` `}
+          © {new Date().getFullYear()}, Developed by
           <a>Chiranthan Y</a>
         </span>
       </footer>

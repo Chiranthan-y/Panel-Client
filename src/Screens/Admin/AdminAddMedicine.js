@@ -27,9 +27,9 @@ const AdminAddMedicine = () => {
     formData.append('price', data.price);
     formData.append('company', data.company);
     formData.append('offer', data.offer);
-    formData.append('photo', data.image);
+    formData.append('photo', data.image, data.image.name);
     dispatch(create_medicine(formData));
-    //clear all fields
+    // Clear all fields
   };
 
   useEffect(() => {
@@ -111,7 +111,7 @@ const AdminAddMedicine = () => {
             className={input_cls}
             type='file'
             placeholder='Choose a file'
-            onChange={(e) => e.target.files[0]}
+            onChange={(e) => setData({ ...data, image: e.target.files[0] })}
           />
         </div>
 

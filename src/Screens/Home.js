@@ -8,18 +8,24 @@ import Base from './../Components/Base';
 const Home = () => {
   const dispatch = useDispatch();
   const { medicineList } = useSelector((state) => state.medicine);
+
   useEffect(() => {
     dispatch(get_all_medicine());
   }, [dispatch]);
 
-  console.log(medicineList[0]);
-
   return (
     <Base title='Home'>
       <div className='flex flex-wrap gap-2 p-3'>
-        {medicineList.map((medicine) => (
-          <ProductCard key={medicine.id} data={medicine} />
-        ))}
+        {medicineList ? (
+          medicineList.map((medicine) => (
+            <div key={medicine._id}>
+              <ProductCard key={medicine.id} data={medicine} />
+            </div>
+          ))
+        ) : (
+          <h1>server not connected</h1>
+        )}
+        {}
       </div>
     </Base>
   );
