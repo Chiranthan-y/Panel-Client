@@ -8,35 +8,10 @@ import {
   REGISTER_FAIL,
   REGISTER_REQUEST,
   REGISTER_SUCCESS,
-  GET_ALL_USER_FAIL,
-  GET_ALL_USER_REQUEST,
-  GET_ALL_USER_SUCCESS,
 } from './action.types';
 import axios from '../../Utils/axios';
 
-const get_all_user_request = () => ({
-  type: GET_ALL_USER_REQUEST,
-});
 
-const get_all_user_success = (users) => ({
-  type: GET_ALL_USER_SUCCESS,
-  payload: users,
-});
-
-const get_all_user_fail = (error) => ({
-  type: GET_ALL_USER_FAIL,
-  payload: error,
-});
-
-const get_all_user = () => async (dispatch) => {
-  dispatch(get_all_user_request());
-  try {
-    const response = await axios.get('/users');
-    dispatch(get_all_user_success(response.data));
-  } catch (error) {
-    dispatch(get_all_user_fail(error));
-  }
-};
 
 const register_request = () => ({
   type: REGISTER_REQUEST,

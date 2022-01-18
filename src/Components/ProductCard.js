@@ -27,7 +27,7 @@ const ProductCard = ({ data, cart = false }) => {
   );
 
   return (
-    <div className='max-w-sm bg-sky-200 rounded-lg border border-gray-200 shadow-m'>
+    <div className='max-w-xs bg-sky-200 rounded-lg border border-gray-200 shadow-lg'>
       <a href='#'>
         <img
           className='rounded-t-lg'
@@ -38,16 +38,16 @@ const ProductCard = ({ data, cart = false }) => {
       <div className='p-3'>
         <a href='#'>
           <h5 className='mb-2 text-2xl font-bold tracking-tight text-gray-900'>
-            ${data.price}
-          </h5>
-        </a>
-        <a href='#'>
-          <h5 className='mb-1 text-2xl font-bold tracking-tight text-gray-700'>
             {data.name}
           </h5>
         </a>
         <a href='#'>
-          <h5 className='mb-1 text-sm font-bold tracking-tight text-gray-700'>
+          <h5 className='mb-1 text-2xl font-bold tracking-tight text-gray-700'>
+            ${data.price}
+          </h5>
+        </a>
+        <a href='#'>
+          <h5 className='mb-1 text-sm font-bold tracking-tight text-gray-600'>
             offer: {data.offer}%
           </h5>
         </a>

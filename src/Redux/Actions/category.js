@@ -5,6 +5,9 @@ import {
   CREATE_CATEGORY_FAIL,
   CREATE_CATEGORY_REQUEST,
   CREATE_CATEGORY_SUCCESS,
+  DELETE_CATEGORY_FAIL,
+  DELETE_CATEGORY_REQUEST,
+  DELETE_CATEGORY_SUCCESS,
 } from './action.types';
 import axios from '../../Utils/axios';
 
@@ -43,6 +46,20 @@ const create_category_fail = (error) => ({
   payload: error,
 });
 
+const delete_category_request = () => ({
+  type: DELETE_CATEGORY_REQUEST,
+});
+
+const delete_category_success = (category) => ({
+  type: DELETE_CATEGORY_SUCCESS,
+  payload: category,
+});
+
+const delete_category_fail = (error) => ({
+  type: DELETE_CATEGORY_FAIL,
+  payload: error,
+});
+
 export const create_category = (category) => (dispatch) => {
   dispatch(create_category_request());
   axios
@@ -76,5 +93,21 @@ export const get_category = () => (dispatch) => {
     })
     .catch((error) => {
       dispatch(get_category_fail(error.response.data));
+    });
+};
+
+export const delete_category = (categoryId) => (dispatch) => {
+  dispatch(delete_category_request());
+  axios
+    .delete(`user/${_id}/category/${categoryId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((response) => {
+      dispatch(delete_category_success(response.data));
+    })
+    .catch((error) => {
+      dispatch(delete_category_fail(error.response.data));
     });
 };

@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { get_category, create_category } from './../../Redux/Actions/category';
+import {
+  get_category,
+  create_category,
+  delete_category,
+} from './../../Redux/Actions/category';
 
 const AdminCategories = () => {
   const dispatch = useDispatch();
@@ -38,11 +42,12 @@ const AdminCategories = () => {
               key={item.id}
               className='p-3 rounded bg-blue-500 shadow-lg flex justify-between gap-7 items-center'>
               <h1 className='text-xl'>{item.name}</h1>
-              <button className='bg-red-500 px-5 py-2 rounded-lg text-white font-bold'>
+              <button
+                className='bg-red-500 px-5 py-2 rounded-lg text-white font-bold'
+                onClick={() => {
+                  dispatch(delete_category(item._id));
+                }}>
                 delete
-              </button>
-              <button className='bg-green-500 px-5 py-2 rounded-lg text-white font-bold'>
-                update
               </button>
             </div>
           ))}

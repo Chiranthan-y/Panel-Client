@@ -29,6 +29,11 @@ const AdminDashboard = () => {
               Manage Categories
             </button>
           </Link>
+          <Link to={`${url}/company`}>
+            <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>
+              Manage Company
+            </button>
+          </Link>
           <Link to={`${url}/user`}>
             <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>
               Manage Users

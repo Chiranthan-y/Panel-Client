@@ -5,6 +5,9 @@ import {
   CREATE_CATEGORY_FAIL,
   CREATE_CATEGORY_REQUEST,
   CREATE_CATEGORY_SUCCESS,
+  DELETE_CATEGORY_FAIL,
+  DELETE_CATEGORY_REQUEST,
+  DELETE_CATEGORY_SUCCESS,
 } from './../Actions/action.types';
 
 const initialState = {
@@ -44,6 +47,25 @@ const category = (state = initialState, action) => {
         loading: false,
       };
     case CREATE_CATEGORY_FAIL:
+      return {
+        ...state,
+        error: action.payload,
+        loading: false,
+      };
+    case DELETE_CATEGORY_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case DELETE_CATEGORY_SUCCESS:
+      return {
+        ...state,
+        category: state.category.filter(
+          (category) => category._id !== action.payload
+        ),
+        loading: false,
+      };
+    case DELETE_CATEGORY_FAIL:
       return {
         ...state,
         error: action.payload,

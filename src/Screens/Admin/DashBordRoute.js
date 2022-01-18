@@ -5,6 +5,7 @@ import AdminOrders from './AdminOrders';
 import AdminProducts from './AdminProducts';
 import AdminUsers from './AdminUsers';
 import AdminAddMedicine from './AdminAddMedicine';
+import AdminManageCompany from './AdminManageCompany';
 
 const DashBordRoute = () => {
   const { url } = useRouteMatch();
@@ -14,6 +15,7 @@ const DashBordRoute = () => {
       <Route path={`${url}/add-product`} component={AdminAddMedicine} />
       <Route path={`${url}/order`} component={AdminOrders} />
       <Route path={`${url}/category`} component={AdminCategories} />
+      <Route path={`${url}/company`} component={AdminManageCompany} />
       <Route path={`${url}/user`} component={AdminUsers} />
     </Switch>
   );
