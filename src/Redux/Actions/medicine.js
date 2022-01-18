@@ -8,6 +8,9 @@ import {
   DELETE_MEDICINE_FAIL,
   DELETE_MEDICINE_SUCCESS,
   DELETE_MEDICINE_REQUEST,
+  GET_MEDI_CATEGORY_FAIL,
+  GET_MEDI_CATEGORY_SUCCESS,
+  GET_MEDI_CATEGORY_REQUEST,
 } from './action.types';
 import axios from '../../Utils/axios';
 
@@ -59,6 +62,34 @@ const delete_medicine_fail = (error) => ({
   type: DELETE_MEDICINE_FAIL,
   payload: error,
 });
+
+const get_medi_category_request = () => ({
+  type: GET_MEDI_CATEGORY_REQUEST,
+});
+const get_medi_category_success = (category) => ({
+  type: GET_MEDI_CATEGORY_SUCCESS,
+  payload: category,
+});
+const get_medi_category_fail = (error) => ({
+  type: GET_MEDI_CATEGORY_FAIL,
+  payload: error,
+});
+
+export const get_medi = (cateId) => (dispatch) => {
+  dispatch(get_medi_category_request());
+  axios
+    .get(`user/${_id}/category/${cateId}/`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => {
+      dispatch(get_medi_category_success(res.data));
+    })
+    .catch((err) => {
+      dispatch(get_medi_category_fail(err.response.data));
+    });
+};
 
 export const create_medicine = (medicine) => (dispatch) => {
   dispatch(create_medicine_request());

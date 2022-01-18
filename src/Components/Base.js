@@ -6,7 +6,7 @@ import CategoryBar from './CategoryBar';
 import { useLocation } from 'react-router-dom';
 
 const Base = ({ title, children }) => {
-  const flage = useLocation().pathname === '/';
+  const flage = useLocation().pathname === '/' || '/category';
 
   return (
     <div className='flex flex-col min-h-screen'>

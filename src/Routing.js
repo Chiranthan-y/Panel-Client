@@ -18,7 +18,7 @@ const Routing = () => (
       <Route exact path='/' component={Home} />
       <Route exact path='/login' component={Login} />
       <Route exact path='/register' component={Register} />
-      <Route exact path='/category' component={Category} />
+      <Route exact path='/category/:categoryId' component={Category} />
 
       <PrivateRoute exact path='/dashboard' component={UserDashboard} />
       <PrivateRoute exact path='/cart' component={Cart} />
